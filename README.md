@@ -1,22 +1,17 @@
-Skip OOBE.
+# Bypass NRO
 
-1. Open Shift+F10.
+Download and run the bypass script to skip OOBE.
 
-From the cmd window (easiest):
-
-```
-curl -L -o %TEMP%\bypass.ps1 https://raw.githubusercontent.com/Stensel8/bypassnro/main/bypass.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File %TEMP%\bypass.ps1
-```
-
-Or from PowerShell:
+From CMD (Shift+F10 during OOBE):
 
 ```
-Set-ExecutionPolicy -Scope Process Bypass -Force
-Invoke-WebRequest https://raw.githubusercontent.com/Stensel8/bypassnro/main/bypass.ps1 -OutFile $env:TEMP\bypass.ps1
-& $env:TEMP\bypass.ps1
+powershell -Command "New-Item -ItemType Directory -Path 'C:\Temp' -Force; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Stensel8/bypassnro/main/bypass.ps1' -OutFile 'C:\Temp\bypass.ps1'" && powershell -NoProfile -ExecutionPolicy Bypass -File C:\Temp\bypass.ps1
 ```
 
-Downloads `unattend.xml` from this repo and runs Sysprep.
+From PowerShell:
+
+```
+New-Item -ItemType Directory -Path 'C:\Temp' -Force | Out-Null; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Stensel8/bypassnro/main/bypass.ps1' -OutFile 'C:\Temp\bypass.ps1'; & 'C:\Temp\bypass.ps1'
+```
 
 

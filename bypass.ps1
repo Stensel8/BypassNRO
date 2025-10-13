@@ -70,7 +70,7 @@ function Start-Sysprep {
         [Parameter(Mandatory=$true)][string]$UnattendPath
     )
 
-    $sysprep = Join-Path -Path $env:WINDIR -ChildPath 'System32\Sysprep\Sysprep.exe'
+    $sysprep = Join-Path -Path 'C:\Windows' -ChildPath 'System32\Sysprep\Sysprep.exe'
     if (-not (Test-Path -Path $sysprep)) {
         Write-Error "Sysprep not found at $sysprep"
         exit 4
